@@ -19,7 +19,7 @@ public class TopicConfig {
     @Bean
     public NewTopic notificationsDltTopic() {
         return TopicBuilder.name("notification.events.DLT")
-                .partitions(2)
+                .partitions(6)
                 .replicas(1)
                 .build();
     }
