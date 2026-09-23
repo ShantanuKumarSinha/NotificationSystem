@@ -15,9 +15,9 @@ public class KafkaConfig {
     @Bean
     public DefaultErrorHandler errorHandler(KafkaTemplate<Object, Object> template){
         var backOff = new ExponentialBackOffWithMaxRetries(5);
-        backOff.setInitialInterval(1000);
-        backOff.setMultiplier(2.0);
-        backOff.setMaxInterval(10000);
+        backOff.setInitialInterval(1000);// 1s
+        backOff.setMultiplier(2.0); // multiplies by 2
+        backOff.setMaxInterval(10000); // max 10s
         DeadLetterPublishingRecoverer recoverer = new DeadLetterPublishingRecoverer(template,((consumerRecord, e) -> new TopicPartition(consumerRecord.topic()+".DLT", consumerRecord.partition())));
         DefaultErrorHandler errorHandler = new DefaultErrorHandler(recoverer, backOff);
         errorHandler.addNotRetryableExceptions(IllegalArgumentException.class);
