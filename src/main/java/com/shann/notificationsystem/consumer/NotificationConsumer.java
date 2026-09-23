@@ -7,7 +7,6 @@ import com.shann.notificationsystem.model.NotificationEvent;
 import com.shann.notificationsystem.repository.FailedMessageRepository;
 import com.shann.notificationsystem.service.NotificationDispatcher;
 import java.time.Duration;
-import java.util.Map;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -70,17 +69,11 @@ public class NotificationConsumer {
             .body(record.value().body())
             .metadataKey(
                 record.value().metadata() != null
-                    ? record.value().metadata().entrySet().stream()
-                        .findFirst()
-                        .map(Map.Entry::getKey)
-                        .orElse(null)
+                    ? record.value().metadata().keySet().toString()
                     : null)
             .metadataValue(
                 record.value().metadata() != null
-                    ? record.value().metadata().entrySet().stream()
-                        .findFirst()
-                        .map(Map.Entry::getValue)
-                        .orElse(null)
+                    ? record.value().metadata().values().toString()
                     : null)
             .createdAt(record.value().createdAt())
             .exceptionMessage(

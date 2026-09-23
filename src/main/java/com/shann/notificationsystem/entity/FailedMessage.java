@@ -3,15 +3,17 @@ package com.shann.notificationsystem.entity;
 import com.shann.notificationsystem.model.Channel;
 import jakarta.persistence.*;
 import java.time.Instant;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 @Entity
-@Table(name = "failed_messages")
 @Data
 @Builder
 @RequiredArgsConstructor
+@AllArgsConstructor
 public class FailedMessage {
 
   @Id

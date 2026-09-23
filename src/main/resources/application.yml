@@ -25,6 +25,12 @@ spring:
           delivery.timeout.ms: 120000
           linger.ms: 20
           batch.size: 65536
+    datasource:
+      url: jdbc:postgresql://localhost:5432/postgres
+      username: shantanukumar
+      password: test
+      driver-class-name: org.postgresql.Driver
+
 topics:
   notifiications: notification.events
   notifications-dlt: notification.events.DLT
